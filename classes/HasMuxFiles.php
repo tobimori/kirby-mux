@@ -3,16 +3,10 @@
 namespace tobimori\Mux;
 
 use Kirby\Cms\Files;
-use MuxPhp\Configuration;
 
 trait HasMuxFiles
 {
-	private function muxConfig()
-	{
-		return Configuration::getDefaultConfiguration()
-			->setUsername('YOUR_USERNAME')
-			->setPassword('YOUR_PASSWORD');
-	}
+	use HasMuxApiClient;
 
 	public function files(): Files
 	{
@@ -23,8 +17,15 @@ trait HasMuxFiles
 		$files = new Files([], $this);
 
 
+		foreach ($assets = $this->assetsApi()->listAssets()->getData() as $asset) {
+			$files->add(new MuxVideo([
+				'filename' => $asset->getId(),
+				'template' => 'mux-video',
+				'uuid' => $asset->getId(),
+				'parent' => $this,
+			]));
+		}
 
-
-		return $this->files = $files;
+		return $this->files = $files->add(parent::files());
 	}
 }
