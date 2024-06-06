@@ -1,0 +1,10 @@
+{
+	"video": "Mux Video",
+	"duration": "Duration",
+	"status": "Status",
+	"status.ready": "Ready",
+	"status.errored": "Errored",
+	"status.preparing": "Preparing",
+	"status.processing": "Processing",
+	"assetId": "Asset ID"
+}

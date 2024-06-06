@@ -1,2 +1,13 @@
+accept:
+  extension: mp4,webm
+  type: video
+image:
+  icon: file-video
+  query: file.thumb
+  cover: true
+
 options:
   rename: false
+
+fields:
+  hidden: true

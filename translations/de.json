@@ -1,0 +1,10 @@
+{
+	"video": "Video",
+	"duration": "Dauer",
+	"status": "Status",
+	"status.ready": "Bereit zur Wiedergabe",
+	"status.errored": "Verarbeitungsfehler",
+	"status.preparing": "In Vorbereitung",
+	"status.processing": "In Verarbeitung",
+	"assetId": "Asset-ID"
+}

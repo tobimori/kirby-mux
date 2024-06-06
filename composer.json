@@ -2,7 +2,6 @@
   "name": "tobimori/kirby-mux",
   "description": "Use Mux to upload and manage videos in Kirby",
   "type": "kirby-plugin",
-  "version": "1.0.0",
   "license": "proprietary",
   "homepage": "https://plugins.andkindness.com/mux",
   "authors": [
