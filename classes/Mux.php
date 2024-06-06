@@ -111,6 +111,10 @@ class Mux
 		$index = static::cache()->get('index');
 		if ($index) {
 			$ids = Str::split($index, ',');
+			if (A::has($ids, $id)) {
+				return true;
+			}
+
 			$ids[] = $id;
 			$index = A::join($ids, ',');
 		} else {
@@ -144,11 +148,17 @@ class Mux
 	/**
 	 * Get a single asset by ID
 	 */
-	public static function asset(string $id): MuxAsset
+	public static function asset(string $id): MuxAsset|null
 	{
-		return static::cache()->getOrSet($id, function () use ($id) {
-			return static::assetsApi()->getAsset($id)->getData();
-		});
+		$data = unserialize(
+			static::cache()->getOrSet($id, fn () => serialize(static::assetsApi()->getAsset($id)->getData()))
+		);
+
+		if ($data !== null) {
+			static::addAssetCache($id, $data);
+		}
+
+		return $data;
 	}
 
 	/**

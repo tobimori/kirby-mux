@@ -22,8 +22,6 @@ class WebhookRequest extends Request
 	 */
 	public function verifySignature(): bool
 	{
-		ray($this->body()->toJson());
-
 		$secret = Mux::resolveOption('webhookSecret');
 		if ($secret === null) {
 			return true;

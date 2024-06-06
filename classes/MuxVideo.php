@@ -5,6 +5,7 @@ namespace tobimori\Mux;
 use Kirby\Cms\File;
 use Kirby\Cms\ModelWithContent;
 use Kirby\Content\Field;
+use Kirby\Exception\Exception;
 use Kirby\Filesystem\Asset;
 use Kirby\Filesystem\F;
 use Kirby\Http\Remote;
@@ -139,7 +140,7 @@ class MuxVideo extends File
 	public function thumb($options = null): Asset|MuxVideo
 	{
 		if ($this->playbackId() === null || $this->muxAsset()->getStatus() !== 'ready') {
-			return $this;
+			throw new Exception('[Mux] Video is not ready yet');
 		}
 
 		// kirby expects a *local* file/asset object to be returned

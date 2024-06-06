@@ -34,7 +34,7 @@ trait HasMuxFiles
 
 		// if the kirby server got out of sync with the mux server, delete obsolete files
 		// (not recognized via the mux API, but still present in the kirby filesystem)
-		//$this->clearObsoleteFiles();
+		$this->clearObsoleteFiles();
 
 		return $this->files;
 	}
@@ -49,7 +49,9 @@ trait HasMuxFiles
 		foreach ($files->filter(function ($file) {
 			return !($file instanceof MuxVideo) && $file->template() === 'mux-video';
 		}) as $file) {
-			$this->kirby()->impersonate('kirby', fn () => $file->delete());
+			if (!Mux::asset($file->filename())) {
+				$this->kirby()->impersonate('kirby', fn () => $file->delete());
+			}
 		}
 
 		return $files;
