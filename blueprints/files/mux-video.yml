@@ -5,6 +5,7 @@ image:
   icon: file-video
   query: file.thumb
   cover: true
+  player: true # display video player in items collection view
 
 options:
   rename: false
