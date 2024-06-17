@@ -208,6 +208,14 @@ class MuxVideo extends File
 	}
 
 	/**
+	 * Returns the aspect ratio of the video
+	 */
+	public function ratio(): float
+	{
+		return $this->dimensions()->ratio();
+	}
+
+	/**
 	 * Change name is not supported for Mux videos, use changeTitle instead
 	 * Function does nothing
 	 */
