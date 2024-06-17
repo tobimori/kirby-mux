@@ -148,12 +148,12 @@ class MuxVideo extends File
 		// we need to download the thumbnail from Mux and save it locally
 		$path = $this->kirby()->root('media') . '/mux/' . $this->playbackId()->getId() . '.png';
 		if (!F::exists($path)) {
-			$request = Remote::get("https://image.mux.com/{$this->playbackId()->getId()}/thumbnail.png");
+			$request = Remote::get("https://image.mux.com/{$this->playbackId()->getId()}/thumbnail.png?time=0");
 			F::write($path, $request->content());
 		}
 
 		$relativePath = Str::after($path, $this->kirby()->root('index'));
-		return new Asset($relativePath);
+		return new Asset(Str::trim($relativePath, '/'));
 	}
 
 	/**
