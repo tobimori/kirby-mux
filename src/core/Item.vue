@@ -22,6 +22,7 @@
 					:playback-id="playbackId"
 					:layout="layout"
 					controls
+					playsinline
 				></mux-video>
 			</k-frame>
 

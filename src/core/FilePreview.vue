@@ -26,6 +26,7 @@
 					<mux-video
 						:playback-id="url.match(/\/([^\/]+)\.[^.]+$/)[1]"
 						controls
+						playsinline
 					></mux-video>
 				</template>
 
