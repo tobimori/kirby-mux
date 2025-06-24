@@ -70,7 +70,7 @@ class MuxVideo extends File
 	/**
 	 * Creates a new file on disk and uploads it to Mux
 	 */
-	public static function create(array $props, bool $move = false): File
+	public static function create(array $props, bool $move = false): static
 	{
 		$props['content'] ??= [];
 		$props['content']['title'] = $props['filename'];

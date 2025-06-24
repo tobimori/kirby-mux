@@ -60,7 +60,8 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
       * @var string[]
       */
     protected static $openAPITypes = [
-        'referrer' => '\MuxPhp\Models\ReferrerDomainRestriction'
+        'referrer' => '\MuxPhp\Models\ReferrerDomainRestriction',
+        'user_agent' => '\MuxPhp\Models\UserAgentRestrictionRequest'
     ];
 
     /**
@@ -71,7 +72,8 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'referrer' => null
+        'referrer' => null,
+        'user_agent' => null
     ];
 
     /**
@@ -80,7 +82,8 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'referrer' => false
+        'referrer' => false,
+        'user_agent' => false
     ];
 
     /**
@@ -159,7 +162,8 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $attributeMap = [
-        'referrer' => 'referrer'
+        'referrer' => 'referrer',
+        'user_agent' => 'user_agent'
     ];
 
     /**
@@ -168,7 +172,8 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $setters = [
-        'referrer' => 'setReferrer'
+        'referrer' => 'setReferrer',
+        'user_agent' => 'setUserAgent'
     ];
 
     /**
@@ -177,7 +182,8 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $getters = [
-        'referrer' => 'getReferrer'
+        'referrer' => 'getReferrer',
+        'user_agent' => 'getUserAgent'
     ];
 
     /**
@@ -241,6 +247,7 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
         //      please re-integrate with mainline when possible.
         //      src: https://github.com/OpenAPITools/openapi-generator/issues/9038
         $this->setIfExists('referrer', $data ?? [], null);
+        $this->setIfExists('user_agent', $data ?? [], null);
     }
 
     /**
@@ -310,6 +317,35 @@ class CreatePlaybackRestrictionRequest implements ModelInterface, ArrayAccess, \
         }
 
         $this->container['referrer'] = $referrer;
+
+        return $this;
+    }
+
+    /**
+     * Gets user_agent
+     *
+     * @return \MuxPhp\Models\UserAgentRestrictionRequest|null
+     */
+    public function getUserAgent()
+    {
+        return $this->container['user_agent'];
+    }
+
+    /**
+     * Sets user_agent
+     *
+     * @param \MuxPhp\Models\UserAgentRestrictionRequest|null $user_agent user_agent
+     *
+     * @return self
+     */
+    public function setUserAgent($user_agent)
+    {
+
+        if (is_null($user_agent)) {
+            throw new \InvalidArgumentException('non-nullable user_agent cannot be null');
+        }
+
+        $this->container['user_agent'] = $user_agent;
 
         return $this;
     }

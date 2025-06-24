@@ -68,6 +68,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'resolution_tier' => 'string',
         'max_resolution_tier' => 'string',
         'encoding_tier' => 'string',
+        'video_quality' => 'string',
         'max_stored_frame_rate' => 'double',
         'aspect_ratio' => 'string',
         'playback_ids' => '\MuxPhp\Models\PlaybackID[]',
@@ -87,7 +88,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'recording_times' => '\MuxPhp\Models\AssetRecordingTimes[]',
         'non_standard_input_reasons' => '\MuxPhp\Models\AssetNonStandardInputReasons',
         'test' => 'bool',
-        'ingest_type' => 'string'
+        'ingest_type' => 'string',
+        'meta' => '\MuxPhp\Models\AssetMetadata'
     ];
 
     /**
@@ -106,6 +108,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'resolution_tier' => null,
         'max_resolution_tier' => null,
         'encoding_tier' => null,
+        'video_quality' => null,
         'max_stored_frame_rate' => 'double',
         'aspect_ratio' => null,
         'playback_ids' => null,
@@ -125,7 +128,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'recording_times' => null,
         'non_standard_input_reasons' => null,
         'test' => 'boolean',
-        'ingest_type' => null
+        'ingest_type' => null,
+        'meta' => null
     ];
 
     /**
@@ -142,6 +146,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'resolution_tier' => false,
         'max_resolution_tier' => false,
         'encoding_tier' => false,
+        'video_quality' => false,
         'max_stored_frame_rate' => false,
         'aspect_ratio' => false,
         'playback_ids' => false,
@@ -161,7 +166,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'recording_times' => false,
         'non_standard_input_reasons' => false,
         'test' => false,
-        'ingest_type' => false
+        'ingest_type' => false,
+        'meta' => false
     ];
 
     /**
@@ -248,6 +254,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'resolution_tier' => 'resolution_tier',
         'max_resolution_tier' => 'max_resolution_tier',
         'encoding_tier' => 'encoding_tier',
+        'video_quality' => 'video_quality',
         'max_stored_frame_rate' => 'max_stored_frame_rate',
         'aspect_ratio' => 'aspect_ratio',
         'playback_ids' => 'playback_ids',
@@ -267,7 +274,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'recording_times' => 'recording_times',
         'non_standard_input_reasons' => 'non_standard_input_reasons',
         'test' => 'test',
-        'ingest_type' => 'ingest_type'
+        'ingest_type' => 'ingest_type',
+        'meta' => 'meta'
     ];
 
     /**
@@ -284,6 +292,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'resolution_tier' => 'setResolutionTier',
         'max_resolution_tier' => 'setMaxResolutionTier',
         'encoding_tier' => 'setEncodingTier',
+        'video_quality' => 'setVideoQuality',
         'max_stored_frame_rate' => 'setMaxStoredFrameRate',
         'aspect_ratio' => 'setAspectRatio',
         'playback_ids' => 'setPlaybackIds',
@@ -303,7 +312,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'recording_times' => 'setRecordingTimes',
         'non_standard_input_reasons' => 'setNonStandardInputReasons',
         'test' => 'setTest',
-        'ingest_type' => 'setIngestType'
+        'ingest_type' => 'setIngestType',
+        'meta' => 'setMeta'
     ];
 
     /**
@@ -320,6 +330,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'resolution_tier' => 'getResolutionTier',
         'max_resolution_tier' => 'getMaxResolutionTier',
         'encoding_tier' => 'getEncodingTier',
+        'video_quality' => 'getVideoQuality',
         'max_stored_frame_rate' => 'getMaxStoredFrameRate',
         'aspect_ratio' => 'getAspectRatio',
         'playback_ids' => 'getPlaybackIds',
@@ -339,7 +350,8 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'recording_times' => 'getRecordingTimes',
         'non_standard_input_reasons' => 'getNonStandardInputReasons',
         'test' => 'getTest',
-        'ingest_type' => 'getIngestType'
+        'ingest_type' => 'getIngestType',
+        'meta' => 'getMeta'
     ];
 
     /**
@@ -401,6 +413,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     public const MAX_RESOLUTION_TIER__2160P = '2160p';
     public const ENCODING_TIER_SMART = 'smart';
     public const ENCODING_TIER_BASELINE = 'baseline';
+    public const ENCODING_TIER_PREMIUM = 'premium';
+    public const VIDEO_QUALITY_BASIC = 'basic';
+    public const VIDEO_QUALITY_PLUS = 'plus';
+    public const VIDEO_QUALITY_PREMIUM = 'premium';
     public const MASTER_ACCESS_TEMPORARY = 'temporary';
     public const MASTER_ACCESS_NONE = 'none';
     public const MP4_SUPPORT_STANDARD = 'standard';
@@ -484,6 +500,21 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::ENCODING_TIER_SMART,
             self::ENCODING_TIER_BASELINE,
+            self::ENCODING_TIER_PREMIUM,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getVideoQualityAllowableValues()
+    {
+        return [
+            self::VIDEO_QUALITY_BASIC,
+            self::VIDEO_QUALITY_PLUS,
+            self::VIDEO_QUALITY_PREMIUM,
         ];
     }
 
@@ -558,6 +589,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('resolution_tier', $data ?? [], null);
         $this->setIfExists('max_resolution_tier', $data ?? [], null);
         $this->setIfExists('encoding_tier', $data ?? [], null);
+        $this->setIfExists('video_quality', $data ?? [], null);
         $this->setIfExists('max_stored_frame_rate', $data ?? [], null);
         $this->setIfExists('aspect_ratio', $data ?? [], null);
         $this->setIfExists('playback_ids', $data ?? [], null);
@@ -578,6 +610,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('non_standard_input_reasons', $data ?? [], null);
         $this->setIfExists('test', $data ?? [], null);
         $this->setIfExists('ingest_type', $data ?? [], null);
+        $this->setIfExists('meta', $data ?? [], null);
     }
 
     /**
@@ -648,6 +681,15 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'encoding_tier', must be one of '%s'",
                 $this->container['encoding_tier'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getVideoQualityAllowableValues();
+        if (!is_null($this->container['video_quality']) && !in_array($this->container['video_quality'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'video_quality', must be one of '%s'",
+                $this->container['video_quality'],
                 implode("', '", $allowedValues)
             );
         }
@@ -943,6 +985,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets encoding_tier
      *
      * @return string|null
+     * @deprecated
      */
     public function getEncodingTier()
     {
@@ -952,9 +995,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets encoding_tier
      *
-     * @param string|null $encoding_tier The encoding tier informs the cost, quality, and available platform features for the asset. By default the `smart` encoding tier is used. [See the guide for more details.](https://docs.mux.com/guides/use-encoding-tiers)
+     * @param string|null $encoding_tier This field is deprecated. Please use `video_quality` instead. The encoding tier informs the cost, quality, and available platform features for the asset. The default encoding tier for an account can be set in the Mux Dashboard. [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
      *
      * @return self
+     * @deprecated
      */
     public function setEncodingTier($encoding_tier)
     {
@@ -974,6 +1018,45 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['encoding_tier'] = $encoding_tier;
+
+        return $this;
+    }
+
+    /**
+     * Gets video_quality
+     *
+     * @return string|null
+     */
+    public function getVideoQuality()
+    {
+        return $this->container['video_quality'];
+    }
+
+    /**
+     * Sets video_quality
+     *
+     * @param string|null $video_quality The video quality controls the cost, quality, and available platform features for the asset. The default video quality for an account can be set in the Mux Dashboard. This field replaces the deprecated `encoding_tier` value. [See the video quality guide for more details.](https://docs.mux.com/guides/use-video-quality-levels)
+     *
+     * @return self
+     */
+    public function setVideoQuality($video_quality)
+    {
+        $allowedValues = $this->getVideoQualityAllowableValues();
+        if (!is_null($video_quality) && !in_array($video_quality, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'video_quality', must be one of '%s'",
+                    $video_quality,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+
+        if (is_null($video_quality)) {
+            throw new \InvalidArgumentException('non-nullable video_quality cannot be null');
+        }
+
+        $this->container['video_quality'] = $video_quality;
 
         return $this;
     }
@@ -1225,7 +1308,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets passthrough
      *
-     * @param string|null $passthrough Arbitrary user-supplied metadata set for the asset. Max 255 characters.
+     * @param string|null $passthrough You can set this field to anything you want. It will be included in the asset details and related webhooks. If you're looking for more structured metadata, such as `title` or `external_id` , you can use the `meta` object instead. **Max: 255 characters**.
      *
      * @return self
      */
@@ -1342,6 +1425,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets mp4_support
      *
      * @return string|null
+     * @deprecated
      */
     public function getMp4Support()
     {
@@ -1354,6 +1438,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param string|null $mp4_support mp4_support
      *
      * @return self
+     * @deprecated
      */
     public function setMp4Support($mp4_support)
     {
@@ -1586,6 +1671,35 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['ingest_type'] = $ingest_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets meta
+     *
+     * @return \MuxPhp\Models\AssetMetadata|null
+     */
+    public function getMeta()
+    {
+        return $this->container['meta'];
+    }
+
+    /**
+     * Sets meta
+     *
+     * @param \MuxPhp\Models\AssetMetadata|null $meta meta
+     *
+     * @return self
+     */
+    public function setMeta($meta)
+    {
+
+        if (is_null($meta)) {
+            throw new \InvalidArgumentException('non-nullable meta cannot be null');
+        }
+
+        $this->container['meta'] = $meta;
 
         return $this;
     }

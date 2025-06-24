@@ -1,39 +1,39 @@
 {
-  "name": "tobimori/kirby-mux",
-  "description": "Use Mux to upload and manage videos in Kirby",
-  "type": "kirby-plugin",
-  "license": "proprietary",
-  "homepage": "https://plugins.andkindness.com/mux",
-  "authors": [
-    {
-      "name": "Tobias Möritz",
-      "email": "tobias@moeritz.io"
-    }
-  ],
-  "autoload": {
-    "psr-4": {
-      "tobimori\\Mux\\": "classes"
-    }
-  },
-  "require": {
-    "php": ">=8.2.0",
-    "getkirby/composer-installer": "^1.2.1",
-    "muxinc/mux-php": "^3.16"
-  },
-  "scripts": {
-    "dist": "composer install --no-dev --optimize-autoloader",
-    "fix": "php-cs-fixer fix"
-  },
-  "config": {
-    "optimize-autoloader": true,
-    "allow-plugins": {
-      "getkirby/composer-installer": true
-    }
-  },
-  "extra": {
-    "kirby-cms-path": false
-  },
-  "require-dev": {
-    "getkirby/cli": "^1.4"
-  }
+	"name": "tobimori/kirby-mux",
+	"description": "Use Mux to upload and manage videos in Kirby",
+	"type": "kirby-plugin",
+	"license": "proprietary",
+	"homepage": "https://plugins.andkindness.com/mux",
+	"authors": [
+		{
+			"name": "Tobias Möritz",
+			"email": "tobias@moeritz.io"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"tobimori\\Mux\\": "classes"
+		}
+	},
+	"require": {
+		"php": ">=8.2.0",
+		"getkirby/composer-installer": "^1.2.1",
+		"muxinc/mux-php": "^5.0.1"
+	},
+	"scripts": {
+		"dist": "composer install --no-dev --optimize-autoloader",
+		"fix": "php-cs-fixer fix"
+	},
+	"config": {
+		"optimize-autoloader": true,
+		"allow-plugins": {
+			"getkirby/composer-installer": true
+		}
+	},
+	"extra": {
+		"kirby-cms-path": false
+	},
+	"require-dev": {
+		"getkirby/cli": "^1.6"
+	}
 }
