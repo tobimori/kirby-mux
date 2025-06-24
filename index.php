@@ -21,6 +21,7 @@ App::plugin(
 			'encodingTier' => 'smart' // or 'baseline'
 		],
 		'areas' => require __DIR__ . '/config/areas.php',
+		'sections' => require __DIR__ . '/config/sections.php',
 		'routes' => require __DIR__ . '/config/routes.php',
 		'blueprints' => [
 			'files/mux-video' => __DIR__ . '/blueprints/files/mux-video.yml',

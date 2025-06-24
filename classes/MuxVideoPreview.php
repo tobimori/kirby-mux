@@ -11,8 +11,7 @@ class MuxVideoPreview extends FilePreview
 	public function __construct(
 		public File $file,
 		public string $component = 'k-mux-video-preview'
-	) {
-	}
+	) {}
 
 	public static function accepts(File $file): bool
 	{
@@ -25,7 +24,7 @@ class MuxVideoPreview extends FilePreview
 
 		if ($this->file instanceof MuxVideo) {
 			$dimensions = $this->file->dimensions();
-			
+
 			$details = [
 				[
 					'title' => I18n::translate('mime'),

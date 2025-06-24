@@ -187,6 +187,14 @@ class MuxVideo extends File
 
 
 	/**
+	 * Returns the panel object
+	 */
+	public function panel(): MuxVideoPanel
+	{
+		return new MuxVideoPanel($this);
+	}
+
+	/**
 	 * Returns the Dimensions of the largest video track
 	 */
 	public function dimensions(): Dimensions
