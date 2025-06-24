@@ -90,7 +90,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 mux-video {
 	position: absolute;
 	inset: 0;
