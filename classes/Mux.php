@@ -100,7 +100,7 @@ class Mux
 		return $assets;
 	}
 
-	public static function addAssetCache(string $id, MuxAsset $asset = null): bool
+	public static function addAssetCache(string $id, MuxAsset|null $asset = null): bool
 	{
 		if (!$asset) {
 			$asset = static::assetsApi()->getAsset($id)->getData();
@@ -151,7 +151,7 @@ class Mux
 	public static function asset(string $id): MuxAsset|null
 	{
 		$data = unserialize(
-			static::cache()->getOrSet($id, fn () => serialize(static::assetsApi()->getAsset($id)->getData()))
+			static::cache()->getOrSet($id, fn() => serialize(static::assetsApi()->getAsset($id)->getData()))
 		);
 
 		if ($data !== null) {
@@ -179,6 +179,6 @@ class Mux
 
 	public static function createPassthroughString(array $data): string
 	{
-		return A::join(A::map(array_keys($data), fn ($key) => "{$key}={$data[$key]}"), ';');
+		return A::join(A::map(array_keys($data), fn($key) => "{$key}={$data[$key]}"), ';');
 	}
 }

@@ -6,10 +6,10 @@
 	},
 	"devDependencies": {
 		"kirbyup": "^3.1.6",
-		"kirbyuse": "^0.4.1"
+		"kirbyuse": "^0.12.1"
 	},
 	"dependencies": {
-		"@mux/mux-video": "^0.19.0",
+		"@mux/mux-video": "^0.25.3",
 		"scss": "^0.2.4"
 	}
 }

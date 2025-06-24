@@ -7,6 +7,7 @@ use Kirby\Data\Json;
 use Kirby\Filesystem\Dir;
 use Kirby\Filesystem\F;
 use Kirby\Toolkit\A;
+use tobimori\Mux\MuxVideoPreview;
 
 App::plugin(
 	name: 'tobimori/mux',
@@ -21,10 +22,12 @@ App::plugin(
 		],
 		'areas' => require __DIR__ . '/config/areas.php',
 		'routes' => require __DIR__ . '/config/routes.php',
-		'sections' => require __DIR__ . '/config/sections.php',
 		'blueprints' => [
 			'files/mux-video' => __DIR__ . '/blueprints/files/mux-video.yml',
 			'files/mux-video-processing' => __DIR__ . '/blueprints/files/mux-video-processing.yml',
+		],
+		'filePreviews' => [
+			MuxVideoPreview::class
 		],
 		// get all files from /translations and register them as language files
 		'translations' => A::keyBy(

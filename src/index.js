@@ -1,9 +1,9 @@
-import FilePreview from "./core/FilePreview.vue"
-import Item from "./core/Item.vue"
+import MuxVideoPreview from "./components/MuxVideoPreview.vue";
+import Item from "./core/Item.vue";
 
 panel.plugin("tobimori/mux", {
 	components: {
-		"k-file-preview": FilePreview,
-		"k-item": Item
-	}
-})
+		"k-item": Item,
+		"k-mux-video-preview": MuxVideoPreview,
+	},
+});

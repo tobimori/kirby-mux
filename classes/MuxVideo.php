@@ -33,7 +33,7 @@ class MuxVideo extends File
 	/**
 	 * Turns a Mux API asset model into a Kirby file
 	 */
-	public static function fromApiResource(MuxAsset $asset, ModelWithContent $parent, string $title = null): static
+	public static function fromApiResource(MuxAsset $asset, ModelWithContent $parent, string|null $title = null): static
 	{
 		return new MuxVideo([
 			'filename' => $asset->getId(),
@@ -185,13 +185,6 @@ class MuxVideo extends File
 		});
 	}
 
-	/**
-	 * Returns the panel info object
-	 */
-	public function panel(): MuxPanelView
-	{
-		return new MuxPanelView($this);
-	}
 
 	/**
 	 * Returns the Dimensions of the largest video track
@@ -201,7 +194,7 @@ class MuxVideo extends File
 		$tracks = $this->muxAsset()->getTracks(); // get all tracks
 		if (!$tracks) return new Dimensions(0, 0); // return 0 if no tracks are found
 
-		$tracks = A::filter($tracks, fn ($track) => $track->getType() === 'video'); // find the largest video track
+		$tracks = A::filter($tracks, fn($track) => $track->getType() === 'video'); // find the largest video track
 		$track = A::first(A::sort($tracks, 'getMaxWidth', SORT_DESC)); // sort by width
 
 		return new Dimensions($track->getMaxWidth(), $track->getMaxHeight());
@@ -263,6 +256,6 @@ class MuxVideo extends File
 		$duration = $this->duration();
 		$minutes = floor($duration / 60);
 		$seconds = floor($duration) % 60;
-		return sprintf('%02d:%02d', $minutes, $seconds);
+		return sprintf('%d:%02d', $minutes, $seconds);
 	}
 }
