@@ -1,6 +1,7 @@
 # Kirby Mux
 
-Experimental plugin for adding Mux video support to Kirby.
+Experimental plugin for adding Mux video support to Kirby. This is used in production of multiple on my sites for years, but I don't think it's ready for a paid-for "production release".
+If you're interested in this plugin, please send me an email and I can provide a custom offer for implementation in your site.
 
 ## Setup
 
